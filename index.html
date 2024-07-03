@@ -1,0 +1,104 @@
+<!DOCTYPE html> <html> <head> <title>Tính toán Min Order</title> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> </head> <body> <div class="container my-5"> <h1 class="text-center mb-4">Tính toán Min Order</h1>
+    <form>
+      <div class="form-group">
+        <label for="vehicle-ratio">Tỉ lệ kê xe (%):</label>
+        <input type="number" class="form-control" id="vehicle-ratio" name="vehicle-ratio" step="0.01" required>
+      </div>
+    
+      <div class="form-group">
+        <label for="vehicle-type">Loại xe:</label>
+        <select class="form-control" id="vehicle-type" name="vehicle-type" required>
+          <option value="motorcycle">XE MÁY</option>
+          <option value="700kg">XE 700KG</option>
+          <option value="1-1.25t-dry">XE 1 TẤN -1,25 TẤN KHÔ</option>
+          <option value="2t-dry">XE 2 TẤN KHÔ</option>
+          <option value="2.5t-dry">XE 2,5 TẤN KHÔ</option>
+          <option value="1-1.25t-cold">XE 1 TẤN -1,25 TẤN LẠNH</option>
+          <option value="2t-cold">XE 2 TẤN LẠNH</option>
+          <option value="2.5t-cold">XE 2,5 TẤN LẠNH</option>
+        </select>
+      </div>
+    
+      <div class="form-group">
+        <label for="distance">Quãng đường:</label>
+        <select class="form-control" id="distance" name="distance" required>
+          <option value="0">1 km</option>
+          <option value="1">2 km</option>
+          <option value="2">3 km</option>
+          <option value="3">4 km</option>
+          <option value="4">5 km</option>
+          <option value="5">6 km</option>
+          <option value="6">7 km</option>
+          <option value="7">8 km</option>
+          <option value="8">9 km</option>
+          <option value="9">10 km</option>
+          <option value="10">11 km</option>
+          <option value="11">12 km</option>
+          <option value="12">13 km</option>
+          <option value="13">14 km</option>
+          <option value="14">15 km</option>
+          <option value="15">16 km</option>
+          <option value="16">17 km</option>
+          <option value="17">18 km</option>
+          <option value="18">19 km</option>
+          <option value="19">20 km</option>
+          <option value="20">21 km</option>
+          <option value="21">22 km</option>
+          <option value="22">23 km</option>
+          <option value="23">24 km</option>
+          <option value="24">25 km</option>
+          <option value="25">26 km</option>
+          <option value="26">27 km</option>
+          <option value="27">28 km</option>
+          <option value="28">29 km</option>
+          <option value="29">30 km</option>
+          <option value="30">31 km</option>
+          <option value="31">32 km</option>
+          <option value="32">33 km</option>
+          <option value="33">34 km</option>
+          <option value="34">35 km</option>
+          <option value="35">36 km</option>
+          <option value="36">37 km</option>
+          <option value="37">38 km</option>
+          <option value="38">39 km</option>
+          <option value="39">40 km</option>
+          <option value="40">41 km</option>
+          <option value="41">42 km</option>
+          <option value="42">43 km</option>
+          <option value="43">44 km</option>
+          <option value="44">45 km</option>
+          <option value="45">46 km</option>
+          <option value="46">47 km</option>
+          <option value="47">48 km</option>
+          <option value="48">49 km</option>
+          <option value="49">50 km</option>
+        </select>
+      </div>
+    
+      <div class="form-group">
+        <label for="num-vehicles">Số xe:</label>
+        <input type="number" class="form-control" id="num-vehicles" name="num-vehicles" min="1" required>
+      </div>
+    
+      <button type="button" class="btn btn-primary btn-block" onclick="calculateResults()">Tính toán</button>
+    </form>
+    
+    <div class="card mt-4">
+      <div class="card-body">
+        <p>Tổng số tiền hóa đơn (-VAT): <span id="total-amount-result"></span></p>
+      </div>
+    </div>
+    
+    </div> <script> function calculateResults() { 
+        // Lấy giá trị từ các trường nhập liệu 
+        const vehicleRatio = parseFloat(document.getElementById("vehicle-ratio").value); const vehicleType = document.getElementById("vehicle-type").value; const distance = parseFloat(document.getElementById("distance").value); const numVehicles = parseFloat(document.getElementById("num-vehicles").value); 
+        // Tính toán giá cước dựa trên loại xe và quãng đường 
+        let vehicleFee; switch (vehicleType) { case "motorcycle": vehicleFee = [33594, 33594, 33594, 39936, 46278, 51747, 57217, 62687, 68156, 73625, 78105, 82585, 87065, 91545, 96025, 100121, 104217, 108313, 112409, 116505, 120120, 123735, 127350, 130965, 134580, 138195, 141810, 145425, 149040, 152655, 156270, 159885, 163500, 167115, 170730, 174345, 177960, 181575, 185190, 188805, 192420, 196035, 199650, 203265, 206880, 210495, 214110, 217725, 221340, 224955][distance]; break; case "700kg": vehicleFee = [180495, 180495, 180495, 194868, 209241, 222174, 235107, 248040, 260973, 273906, 285674, 297442, 309210, 320978, 332746, 343558, 354370, 365182, 375994, 386806, 396951, 407096, 417241, 427386, 437531, 447676, 457821, 467966, 478111, 488256, 498401, 508546, 518691, 528836, 538981, 549126, 559271, 569416, 579561, 589706, 599851, 609996, 620141, 630286, 640431, 650576][distance]; break; case "1-1.25t-dry": vehicleFee = [180495, 180495, 180495, 195524, 210553, 224429, 238305, 252181, 266057, 279933, 292369, 304805, 317241, 329677, 342113, 354418, 366723, 379028, 391333, 403638, 415026, 426414, 437802, 449190, 460578, 471966, 483354, 494742, 506130, 517518, 528644, 539770, 550896, 562022, 573148, 584274, 595400, 606526, 617652, 628778, 639904, 651030, 662156, 673282, 684408, 695534][distance]; break; case "2t-dry": vehicleFee = [230469, 230469, 230469, 247187, 263905, 279314, 294723, 310132, 325541, 340950, 355703, 370456, 385209, 399962, 414715, 428422, 442129, 455836, 469543, 483250, 496694, 510138, 523582, 537026, 550470, 563914, 577358, 590802, 604246, 617690, 630872, 644054, 657236, 670418, 683600, 696782, 709964, 723146, 736328, 749510, 762692, 775874, 789056, 802238, 815420, 828602][distance]; break; case "2.5t-dry": vehicleFee = [249160, 249160, 249160, 268103, 287046, 303961, 320876, 337791, 354706, 371621, 387683, 403745, 419807, 435869, 451931, 467209, 482487, 497765, 513043, 528321, 543010, 557699, 572388, 587077, 601766, 616455, 631144, 645833, 660522, 675211, 689900, 704589, 719278, 733967, 748656, 763345, 778034, 792723, 807412, 822101, 836790, 851479, 866168, 880857, 895546, 910235][distance]; break; case "1-1.25t-cold": vehicleFee = [239803, 239803, 239803, 255839, 271875, 286471, 301067, 315663, 330259, 344855, 358730, 372605, 386480, 400355, 414230, 427648, 441066, 454484, 467902, 481320, 493860, 506400, 518940, 531480, 544020, 556560, 569100, 581640, 594180, 606720, 618829, 630938, 643047, 655156, 667265, 679374, 691483, 703592, 715701, 727810, 739919, 752028, 764137, 776246, 788355, 800464][distance]; break; case "2t-cold": vehicleFee = [249160, 249160, 249160, 267383, 285606, 302389, 319172, 335955, 352738, 369521, 385583, 401645, 417707, 433769, 449831, 464743, 479655, 494567, 509479, 524391, 539118, 553845, 568572, 583299, 598026, 612753, 627480, 642207, 656934, 671661, 685958, 700255, 714552, 728849, 743146, 757443, 771740, 786037, 800334, 814631, 828928, 843225, 857522, 871819, 886116, 900413][distance]; break; case "2.5t-cold": vehicleFee = [267930, 267930, 267930, 287162, 306394, 324187, 341980, 359773, 377566, 395359, 411133, 426907, 442681, 458455, 474229, 489141, 504053, 518965, 533877, 548789, 563516, 578243, 592970, 607697, 622424, 637151, 651878, 666605, 681332, 696059, 710356, 724653, 738950, 753247, 767544, 781841, 796138, 810435, 824732, 839029, 853326, 867623, 881920, 896217, 910514, 924811][distance]; break; default: vehicleFee = 0; } 
+        // Tính toán tổng số tiền hóa đơn (-VAT) 
+        const totalAmountWithoutVAT = (vehicleFee * numVehicles) / (vehicleRatio / 100); 
+        // Hiển thị kết quả làm tròn đến số đầu tiên sau dấu phẩy 
+        document.getElementById("total-amount-result").textContent = totalAmountWithoutVAT.toLocaleString();
+        } </script> 
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <div class="credit"> © Lê Trường An </div> <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> </body> </html>
+     </body> </html>
